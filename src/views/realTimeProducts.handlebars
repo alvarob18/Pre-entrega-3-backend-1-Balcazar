@@ -1,0 +1,26 @@
+{{#> main}}
+  <div class="container">
+    <h1>Gestión de Productos</h1>
+
+    <ul class="product-list" id="productsList">
+      {{#each products}}
+        <li data-id="{{this.id}}">
+          <img src="{{this.thumbnail}}" alt="{{this.title}}">
+          <strong>{{this.title}}</strong>
+          <span class="price">${{this.price}}</span>
+          <button class="btn-delete" data-id="{{this.id}}">Eliminar</button>
+        </li>
+      {{/each}}
+    </ul>
+
+    <form id="productForm" enctype="multipart/form-data">
+      <input name="title" type="text" placeholder="Título" required />
+      <input name="price" type="number" placeholder="Precio" required />
+      <input name="file" type="file" accept="image/*" required />
+      <button type="submit">Agregar</button>
+    </form>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/realtimeProducts.js"></script>
+{{/main}}

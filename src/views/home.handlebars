@@ -1,0 +1,17 @@
+{{#> main}}
+  <div class="container">
+    <h1>Catálogo de Productos</h1>
+    <ul class="product-list">
+      {{#each products}}
+        <li>
+          <img src="{{this.thumbnail}}" alt="{{this.title}}">
+          <strong>{{this.title}}</strong>
+          <span class="price">${{this.price}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/main}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
