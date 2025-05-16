@@ -1,0 +1,29 @@
+{{#> main}}
+  <div class="container">
+    <h1>{{product.title}}</h1>
+
+    <div class="product-detail">
+      <img src="{{product.thumbnail}}" alt="{{product.title}}" class="detail-image"/>
+
+      <div class="detail-info">
+        <p class="description">{{product.description}}</p>
+
+        <ul class="detail-specs">
+          <li><strong>Código:</strong> {{product.code}}</li>
+          <li><strong>Categoría:</strong> {{product.category}}</li>
+          <li><strong>Precio:</strong> ${{product.price}}</li>
+          <li><strong>Stock disponible:</strong> {{product.stock}}</li>
+          <li><strong>Etiquetas:</strong>
+            {{#each product.tags}}
+              <span class="tag">{{this}}</span>
+            {{/each}}
+          </li>
+        </ul>
+
+        <form action="/api/carts/{{cartId}}/product/{{product._id}}" method="POST">
+          <button type="submit" class="btn-add-cart">Agregar al carrito</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{{/main}}

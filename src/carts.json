@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1,
+    "products": [
+      {
+        "id": 1,
+        "title": "Shampoo",
+        "description": "Shampoo para cabello debil",
+        "code": "s-123",
+        "price": 20.5,
+        "status": true,
+        "stock": 100,
+        "category": "Articulos de higiene personal",
+        "thumbnails": "",
+        "quantity": 1
+      },
+      {
+        "id": 2,
+        "title": "Acondicionador",
+        "description": "Acondicionador para cabello debil",
+        "code": "a-123",
+        "price": 23.5,
+        "status": true,
+        "stock": 100,
+        "category": "Articulos de higiene personal",
+        "thumbnails": "",
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "products": [
+      [
+        {
+          "id": 1,
+          "title": "Shampoo",
+          "description": "Shampoo para cabello debil",
+          "code": "s-123",
+          "price": 20.5,
+          "status": true,
+          "stock": 100,
+          "category": "Articulos de higiene personal",
+          "thumbnails": ""
+        },
+        {
+          "id": 2,
+          "title": "Acondicionador",
+          "description": "Acondicionador para cabello debil",
+          "code": "a-123",
+          "price": 23.5,
+          "status": true,
+          "stock": 100,
+          "category": "Articulos de higiene personal",
+          "thumbnails": ""
+        }
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "products": [
+      [
+        {
+          "id": 1,
+          "title": "Shampoo",
+          "description": "Shampoo para cabello debil",
+          "code": "s-123",
+          "price": 20.5,
+          "status": true,
+          "stock": 100,
+          "category": "Articulos de higiene personal",
+          "thumbnails": ""
+        },
+        {
+          "id": 2,
+          "title": "Acondicionador",
+          "description": "Acondicionador para cabello debil",
+          "code": "a-123",
+          "price": 23.5,
+          "status": true,
+          "stock": 100,
+          "category": "Articulos de higiene personal",
+          "thumbnails": ""
+        }
+      ]
+    ]
+  },
+  {
+    "id": 4,
+    "products": []
+  },
+  {
+    "id": 5,
+    "products": []
+  },
+  {
+    "id": 6,
+    "products": []
+  },
+  {
+    "id": 7,
+    "products": []
+  },
+  {
+    "id": 8,
+    "products": []
+  }
+]

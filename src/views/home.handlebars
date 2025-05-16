@@ -4,12 +4,29 @@
     <ul class="product-list">
       {{#each products}}
         <li>
-          <img src="{{this.thumbnail}}" alt="{{this.title}}">
-          <strong>{{this.title}}</strong>
+          <a href="/products/{{this._id}}">
+            <img src="{{this.thumbnail}}" alt="{{this.title}}">
+            <strong>{{this.title}}</strong>
+          </a>
           <span class="price">${{this.price}}</span>
         </li>
       {{/each}}
     </ul>
+    <nav class="pagination">
+      <ul>
+        {{#if pagination.hasPrevPage}}
+          <li><a href="?page={{pagination.prevPage}}">Anterior</a></li>
+        {{/if}}
+        {{#each pagination.pages}}
+          <li class="{{#if this.active}}active{{/if}}">
+            <a href="?page={{this.number}}">{{this.number}}</a>
+          </li>
+        {{/each}}
+        {{#if pagination.hasNextPage}}
+          <li><a href="?page={{pagination.nextPage}}">Siguiente</a></li>
+        {{/if}}
+      </ul>
+    </nav>
   </div>
 {{/main}}
 
