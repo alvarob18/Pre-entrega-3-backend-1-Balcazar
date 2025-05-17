@@ -7,9 +7,13 @@ const productManager = new ProductManager("./src/data/products.json");
 
 productsRouter.get("/", async (req, res) => {
   try {
-    const { limit = 10, page = 1 } = req.query;
+    const { limit = 10, page = 1, category, sort } = req.query;
+    const filter = category ? { category } : {};
+    let sortOption = {};
+    if (sort === 'asc') sortOption = { price: 1 };
+    else if (sort === 'desc') sortOption = { price: -1 };
 
-    const products = await Product.paginate({}, { limit, page});
+    const products = await Product.paginate(filter, { limit, page, sort: sortOption });
     res.status(200).json({ status: "success", payload: products });
   } catch (error) {
     res.status(500).json({ message: error.message })
