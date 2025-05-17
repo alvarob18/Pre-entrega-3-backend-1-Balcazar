@@ -1,9 +1,7 @@
 import express from "express";
-import ProductManager from "../ProductManager.js";
 import Product from "../models/product.model.js";
 
 const productsRouter = express.Router();
-const productManager = new ProductManager("./src/data/products.json");
 
 productsRouter.get("/", async (req, res) => {
   try {
@@ -22,8 +20,10 @@ productsRouter.get("/", async (req, res) => {
 
 productsRouter.get("/products/:pid", async (req, res) => {
   try {
-    const products = await productManager.getProductById(req.params.pid);
-    res.status(200).json(products);
+    const product = await Product.findById(req.params.pid);
+    if(!product) return res.status(404).json({ status: "error", message: "Producto no encontrado" });
+
+    res.status(200).json({ status: "success", payload: product });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -42,20 +42,32 @@ productsRouter.post("/", async (req, res) => {
 
 productsRouter.put("/:pid", async (req, res) => {
   try {
-    const updatedProduct = req.body;
-    const products = await productManager.setProductById(req.params.pid, updatedProduct);
-    res.status(200).json(products);
+    const { pid } = req.params;
+    const updatedData = req.body;
+    const updatedProduct = await Product.findByIdAndUpdate(
+      pid,
+      updatedData,
+      { new: true }
+    );
+    if (!updatedProduct) {
+      return res.status(404).json({ status: "error", message: "Producto no encontrado" });
+    }
+    res.status(200).json({ status: "success", payload: updatedProduct });
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
 productsRouter.delete("/:pid", async (req, res) => {
   try {
-    await productManager.deleteProductById(req.params.pid);
-    res.status(200).json({ message: `Producto con id: ${req.params.pid} eliminado` });
+    const { pid } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(pid);
+    if (!deletedProduct) {
+      return res.status(404).json({ status: "error", message: "Producto no encontrado" });
+    }
+    res.status(200).json({ status: "success", message: `Producto con id: ${pid} eliminado` });
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 

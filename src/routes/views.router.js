@@ -1,9 +1,7 @@
 import express from "express";
-import ProductManager from "../ProductManager.js";
 import Product from "../models/product.model.js";
 
 const viewsRouter = express.Router();
-const productManager = new ProductManager("./src/data/products.json");
 
 viewsRouter.get("/", async(req, res)=> {
   try{
@@ -49,11 +47,11 @@ viewsRouter.get("/products/:pid", async (req, res) => {
   }
 });
 
-viewsRouter.get("/realtimeproducts", async(req, res)=> {
-  try{
-    const products = await productManager.getProducts();
+viewsRouter.get("/realtimeproducts", async (req, res) => {
+  try {
+    const products = await Product.find().lean();
     res.render("realTimeProducts", { products });
-  }catch(error){
+  } catch (error) {
     res.status(500).send({ message: error.message });
   }
 });
